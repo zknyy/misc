@@ -1,0 +1,53 @@
+
+
+python tools/Brightness-master/src/init.py
+
+Mysql   root    111111
+启动:	sudo service mysql start
+检查:	sudo netstat -tap | grep mysql
+配置:	sudo gedit /etc/mysql/my.cnf
+
+
+在mysql中载入sql文件用命令: source
+source xxx.sql
+
+
+
+
+
+====================================================
+问题现象：
+我的环境是xUbuntu 12.10下apt-get安装mysql，登陆无法登陆，报错信息这样描述:在用命令(sudo apt-get install mysql-server mysql-client)安装完.mysql服务即开始运行了.此时需要修改root密码,但经常会出现这么一种情况.'Access denied for user 'root'@'localhost' (using password: YES)' 或者其他致使无法登录mysql的情况。
+
+解决方法:
+1.打开/etc/mysql/debian.cnf文件,里面存储了相关的密码，我的文件信息如下
+
+sudo vi /etc/mysql/debian.cnf 
+# Automatically generated for Debian scripts. DO NOT TOUCH!
+[client]
+host     = localhost
+user     = debian-sys-maint
+password = ucClb5nnKFN25eYS
+socket   = /var/run/mysqld/mysqld.sock
+[mysql_upgrade]
+host     = localhost
+user     = debian-sys-maint
+password = ucClb5nnKFN25eYS
+socket   = /var/run/mysqld/mysqld.sock
+basedir  = /usr
+
+
+在[client]段有user=以及password=这两行，这就是通过apt-get安装mysql，系统给我们设置的mysql登录名和密码
+
+2. 输入命令:
+mysql -u debian-sys-maint -p 即debian.cnf中user=后面的内容.回车后会提示输入密码，此时把password=后面的内容复制粘贴后回车即可进行mysql 控制台
+
+
+3.进入控制台后.按以下步骤进行:
+use mysql;
+update user set password=PASSWORD('111111') where user='root';
+FLUSH PRIVILEGES;
+此时可以输入quit;退出后用root帐号登录，也可以继续其他操作.
+
+
+
