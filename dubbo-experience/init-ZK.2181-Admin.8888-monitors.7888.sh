@@ -1,5 +1,6 @@
 
 #start zookeeper
+mkdir /home/demo/dubbo/deploy-dir/zklog
 cd /home/demo/dubbo/deploy-dir/zklog
 zkServer.sh restart
 echo " "
@@ -20,7 +21,7 @@ echo " "
 
 
 #start svn admin tomcat
-/home/demo/software/svnadmin-tomcat-8.886x/bin/start.sh
+/home/demo/software/svnadmin-tomcat-8.886x/bin/startup.sh
 echo " "
 echo "========================"
 echo " "
