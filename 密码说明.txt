@@ -1,4 +1,4 @@
-
+﻿
 
 python tools/Brightness-master/src/init.py
 
@@ -50,4 +50,7 @@ FLUSH PRIVILEGES;
 此时可以输入quit;退出后用root帐号登录，也可以继续其他操作.
 
 
-
+docker 镜像。。。WebStorm 11.0.3
+https://hub.docker.com/r/woailuoli993/jblse/
+jetbrains license server on docker
+docker pull woailuoli993/jblse
